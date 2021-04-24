@@ -104,6 +104,10 @@ case "$1" in
 			rm /docker-entrypoint-initdb.d/.cache
 		fi
 
+		# if the /docker-entrypoint-initdb.d dir not exist create it 
+		if [ ! -d "/docker-entrypoint-initdb.d" ]; then
+			mkdir /docker-entrypoint-initdb.d
+		fi
 		# regenerate cache
 		ls -1 /docker-entrypoint-initdb.d/*.sh 2> /dev/null | xargs md5sum >> /docker-entrypoint-initdb.d/.cache
 		ls -1 /docker-entrypoint-initdb.d/*.sql 2> /dev/null | xargs md5sum >> /docker-entrypoint-initdb.d/.cache
