@@ -2,12 +2,12 @@
 
 ORA_DEB="oracle-xe_11.2.0-1.0_amd64.deb"
 
-#
+# https://tekintian.coding.net/public/docker/docker-oracle-xe-11g/git/files
 # download the Oracle installer
 #
 downloadOracle () {
 
-	local url="https://github.com/MaksymBilenko/docker-oracle-xe-11g"
+	local url="https://tekintian.coding.net/p/docker/d/docker-oracle-xe-11g/git/raw/master"
 
 	local ora_deb_partial=( 
 		${ORA_DEB}aa 
@@ -18,7 +18,7 @@ downloadOracle () {
 	local i=1
 	for part in "${ora_deb_partial[@]}"; do     
 		echo "[Downloading '$part' (part $i/3)]"
-		curl -s --retry 3 -m 60 -o /$part -L $url/blob/master/$part?raw=true
+		curl -s --retry 3 -m 60 -o /$part -L $url/$part
 		i=$((i + 1))
 
 	done

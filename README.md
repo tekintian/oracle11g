@@ -1,20 +1,19 @@
 docker-oracle-xe-11g
 ============================
-[![Docker Repository on Quay](https://quay.io/repository/maksymbilenko/oracle-xe-11g/status "Docker Repository on Quay")](https://quay.io/repository/maksymbilenko/oracle-xe-11g)
 
 Oracle Express Edition 11g Release 2 on Ubuntu 14.04.1 LTS
 
 ### Installation
 
-    docker pull quay.io/maksymbilenko/oracle-xe-11g
+    docker pull tekintian/oracle-xe-11g
 
 Run with 8080 and 1521 ports opened:
 
-    docker run -d -p 8080:8080 -p 1521:1521 quay.io/maksymbilenko/oracle-xe-11g
+    docker run -d -p 8080:8080 -p 1521:1521 tekintian/oracle-xe-11g
 
 Run with data on host and reuse it:
 
-    docker run -d -p 8080:8080 -p 1521:1521 -v /my/oracle/data:/u01/app/oracle quay.io/maksymbilenko/oracle-xe-11g
+    docker run -d -p 8080:8080 -p 1521:1521 -v /my/oracle/data:/u01/app/oracle tekintian/oracle-xe-11g
 
 Run with customization of processes, sessions, transactions
 This customization is needed on the database initialization stage. If you are using mounted folder with DB files this is not used:
@@ -27,11 +26,11 @@ This customization is needed on the database initialization stage. If you are us
     -e processes=1000 \
     -e sessions=1105 \
     -e transactions=1215 \
-    quay.io/maksymbilenko/oracle-xe-11g
+    tekintian/oracle-xe-11g
 
 Run with custom sys password:
 
-    docker run -d -p 8080:8080 -p 1521:1521 -e DEFAULT_SYS_PASS=sYs-p@ssw0rd quay.io/maksymbilenko/oracle-xe-11g
+    docker run -d -p 8080:8080 -p 1521:1521 -e DEFAULT_SYS_PASS=sYs-p@ssw0rd tekintian/oracle-xe-11g
 
 Connect database with following setting:
 
@@ -54,17 +53,17 @@ Connect to Oracle Application Express web management console with following sett
 
 Apex upgrade up to v 5.*
 
-    docker run -it --rm --volumes-from ${DB_CONTAINER_NAME} --link ${DB_CONTAINER_NAME}:oracle-database -e PASS=YourSYSPASS quay.io/maksymbilenko/docker-oracle-apex install
+    docker run -it --rm --volumes-from ${DB_CONTAINER_NAME} --link ${DB_CONTAINER_NAME}:oracle-database -e PASS=YourSYSPASS tekintian/docker-oracle-apex install
 Details could be found here: https://github.com/MaksymBilenko/docker-oracle-apex
 
 Auto import of sh sql and dmp files
 
-    docker run -d -p 8080:8080 -p 1521:1521 -v /my/oracle/data:/u01/app/oracle -v /my/oracle/init/sh_sql_dmp_files:/docker-entrypoint-initdb.d quay.io/maksymbilenko/oracle-xe-11g
+    docker run -d -p 8080:8080 -p 1521:1521 -v /my/oracle/data:/u01/app/oracle -v /my/oracle/init/sh_sql_dmp_files:/docker-entrypoint-initdb.d tekintian/oracle-xe-11g
 
 **In case of using DMP imports dump file should be named like ${IMPORT_SCHEME_NAME}.dmp**
 **User credentials for imports are  ${IMPORT_SCHEME_NAME}/${IMPORT_SCHEME_NAME}**
 
-**In case of any issues please post it [here](https://github.com/MaksymBilenko/docker-oracle-xe-11g/issues).**
+**In case of any issues please post it [here](https://www.github.com/tekintian/oracle11g/issues).**
 
 
 **CHANGELOG**
