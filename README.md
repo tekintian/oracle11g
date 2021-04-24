@@ -77,3 +77,8 @@ Auto import of sh sql and dmp files
 * Added graceful shutdown on containeer stop
 * Removed sshd
 
+
+## FAQ
+If there is no response or log output problem after running docker run command, restart docker to solve the problem.
+
+运行docker run命令后如果无响应,也无日志输出,  重新启动Docker即可解决. 此问题在添加了 -v  启动参数后会发生
